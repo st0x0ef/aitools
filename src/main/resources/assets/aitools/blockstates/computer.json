@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "aitools:block/computer",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "aitools:block/computer",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "aitools:block/computer"
+    },
+    "facing=west": {
+      "model": "aitools:block/computer",
+      "y": 90
+    },
+    "facing=up": {
+      "model": "aitools:block/computer"
+    },
+    "facing=down": {
+      "model": "aitools:block/computer"
+    }
+  }
+}

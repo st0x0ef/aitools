@@ -1,8 +1,6 @@
 package com.st0x0ef.aitools;
 
-import com.st0x0ef.aitools.common.registries.CreativeTabsRegistry;
-import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
-import com.st0x0ef.aitools.common.registries.ItemsRegistry;
+import com.st0x0ef.aitools.common.registries.*;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -18,8 +16,11 @@ public class AITools {
 
     public AITools(IEventBus bus, ModContainer modContainer) {
         DataComponentsRegistry.DATA_COMPONENTS_TYPES.register(bus);
+        BlocksRegistry.BLOCKS.register(bus);
         ItemsRegistry.ITEMS.register(bus);
         CreativeTabsRegistry.CREATIVE_MODE_TABS.register(bus);
+        BlockEntitiesRegistry.BLOCK_ENTITY_TYPE.register(bus);
+        MenuTypesRegistry.MENU_TYPE.register(bus);
 
         //NeoForge.EVENT_BUS.register(this);
 

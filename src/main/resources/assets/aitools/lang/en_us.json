@@ -1,5 +1,6 @@
 {
   "itemGroup.aitools": "AI Tools",
 
-  "item.aitools.ai_pickaxe": "AI Pickaxe"
+  "item.aitools.ai_pickaxe": "AI Pickaxe",
+  "block.aitools.computer": "Computer"
 }

@@ -15,5 +15,6 @@ public class CreativeTabsRegistry {
             .icon(() -> ItemsRegistry.AI_PICKAXE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(ItemsRegistry.AI_PICKAXE.get());
+                output.accept(ItemsRegistry.COMPUTER_ITEM.get());
             }).build());
 }
