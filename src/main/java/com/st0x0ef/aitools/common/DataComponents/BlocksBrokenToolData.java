@@ -20,4 +20,14 @@ public record BlocksBrokenToolData(Map<ResourceLocation, Integer> blocksBrokenDa
     public static final StreamCodec<ByteBuf, BlocksBrokenToolData> STREAM_CODEC =
             ByteBufCodecs.map(HashMap::new, ResourceLocation.STREAM_CODEC, ByteBufCodecs.VAR_INT)
                     .map(BlocksBrokenToolData::new, (data) -> new HashMap<>(data.blocksBrokenData()));
+
+
+    public static BlocksBrokenToolData add(BlocksBrokenToolData data1, BlocksBrokenToolData data2) {
+        BlocksBrokenToolData dataToReturn = new BlocksBrokenToolData(data1.blocksBrokenData());
+        data2.blocksBrokenData().forEach((location, amount) -> {
+            dataToReturn.blocksBrokenData.computeIfPresent(location, (location1, actualAmount) -> actualAmount + amount);
+            dataToReturn.blocksBrokenData.putIfAbsent(location, amount);
+        });
+        return dataToReturn;
+    }
 }

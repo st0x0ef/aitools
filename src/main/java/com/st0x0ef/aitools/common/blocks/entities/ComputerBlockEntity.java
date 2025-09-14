@@ -1,9 +1,11 @@
 package com.st0x0ef.aitools.common.blocks.entities;
 
+import com.st0x0ef.aitools.common.DataComponents.BlocksBrokenToolData;
 import com.st0x0ef.aitools.common.menus.ComputerMenu;
 import com.st0x0ef.aitools.common.recipes.ComputerInput;
 import com.st0x0ef.aitools.common.recipes.ComputerRecipe;
 import com.st0x0ef.aitools.common.registries.BlockEntitiesRegistry;
+import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import com.st0x0ef.aitools.common.registries.RecipesRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -20,6 +22,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ComputerBlockEntity extends BaseContainerBlockEntity {
@@ -79,17 +83,26 @@ public class ComputerBlockEntity extends BaseContainerBlockEntity {
             Optional<RecipeHolder<ComputerRecipe>> recipeHolder = quickCheck.getRecipeFor(new ComputerInput(getLevel().getBlockEntity(getBlockPos()), getItems()) , level);
             if (recipeHolder.isPresent()) {
                 ComputerRecipe recipe = recipeHolder.get().value();
-                ItemStack resultStack = recipe.getResultItem(level.registryAccess());
-                setItem(3, resultStack.copy());
+                ItemStack resultStack = recipe.getResultItem(level.registryAccess()).copy();
 
+                List<BlocksBrokenToolData> blocksBrokenToolDataList = new ArrayList<>();
                 for (int i = 0; i < 3; i++) {
                     ItemStack stack = getItem(i);
+                    if (stack.has(DataComponentsRegistry.BLOCKS_BROKEN_MAP.get())) {
+                        blocksBrokenToolDataList.add(stack.get(DataComponentsRegistry.BLOCKS_BROKEN_MAP.get()));
+                    }
                     stack.shrink(1);
 
                     if (stack.isEmpty()) {
                         setItem(i, ItemStack.EMPTY);
                     }
                 }
+
+                if (blocksBrokenToolDataList.size() == 2) {
+                    resultStack.set(DataComponentsRegistry.BLOCKS_BROKEN_MAP.get(), BlocksBrokenToolData.add(blocksBrokenToolDataList.get(0), blocksBrokenToolDataList.get(1)));
+                }
+
+                setItem(3, resultStack);
 
                 setChanged();
             }
