@@ -21,9 +21,7 @@ public class AITools {
         CreativeTabsRegistry.CREATIVE_MODE_TABS.register(bus);
         BlockEntitiesRegistry.BLOCK_ENTITY_TYPE.register(bus);
         MenuTypesRegistry.MENU_TYPE.register(bus);
-
-        //NeoForge.EVENT_BUS.register(this);
-
-        //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        RecipesRegistry.RECIPE_TYPE.register(bus);
+        RecipesRegistry.RECIPE_SERIALIZER.register(bus);
     }
 }

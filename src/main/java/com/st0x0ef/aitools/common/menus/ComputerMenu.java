@@ -13,15 +13,17 @@ public class ComputerMenu extends AbstractContainerMenu {
 
     private final Container inventory;
 
-    public ComputerMenu(int syncId, Inventory inventory) {
-        super(MenuTypesRegistry.COMPUTER.get(), syncId);
+    public ComputerMenu(int syncId, Inventory playerInventory) {
+        this(syncId, playerInventory, new SimpleContainer(4));
+    }
 
-        Container container = new SimpleContainer(4);
+    public ComputerMenu(int syncId, Inventory inventory, Container container) {
+        super(MenuTypesRegistry.COMPUTER.get(), syncId);
 
         checkContainerSize(container, 4);
         this.inventory = container;
 
-        addSlots(inventory);
+        addSlots(container);
 
         addPlayerHotbar(inventory);
         addPlayerInventory(inventory);
@@ -65,21 +67,20 @@ public class ComputerMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(inventory, 1, 57, 44));
         this.addSlot(new Slot(inventory, 2, 88, 44));
 
-        this.addSlot(new Slot(inventory, 3, 135, 44));
-
+        this.addSlot(new ResultSlot(inventory, 3, 135, 44));
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, 4 + l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, 4 + i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }
