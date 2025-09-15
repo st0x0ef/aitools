@@ -18,9 +18,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.HashMap;
 import java.util.List;
 
-public class AIPickaxe extends PickaxeItem {
+public class AIAxe extends AxeItem {
 
-    public AIPickaxe(Tier tier, Properties properties) {
+    public AIAxe(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
@@ -34,12 +34,12 @@ public class AIPickaxe extends PickaxeItem {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        return state.is(BlockTags.MINEABLE_WITH_PICKAXE);
+        return state.is(BlockTags.MINEABLE_WITH_AXE);
     }
 
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
-        if (level.isClientSide || !state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
+        if (level.isClientSide || !state.is(BlockTags.MINEABLE_WITH_AXE)) {
             return true;
         }
 

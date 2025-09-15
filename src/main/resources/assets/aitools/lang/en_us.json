@@ -2,6 +2,8 @@
   "itemGroup.aitools": "AI Tools",
 
   "item.aitools.ai_pickaxe": "AI Pickaxe",
+  "item.aitools.ai_axe": "AI Axe",
+
   "item.aitools.fortune_gem": "Fortune Gem",
 
   "block.aitools.computer": "Computer"
