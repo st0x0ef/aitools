@@ -1,0 +1,18 @@
+{
+  "type": "aitools:computer",
+  "ingredients": [
+    {
+      "item": "aitools:ai_pickaxe"
+    },
+    {
+      "item": "aitools:fortune_gem"
+    },
+    {
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "output": {
+    "id": "aitools:ai_pickaxe",
+    "count": 1
+  }
+}

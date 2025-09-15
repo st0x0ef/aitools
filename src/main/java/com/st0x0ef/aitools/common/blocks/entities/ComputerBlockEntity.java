@@ -1,6 +1,6 @@
 package com.st0x0ef.aitools.common.blocks.entities;
 
-import com.st0x0ef.aitools.common.DataComponents.BlocksBrokenToolData;
+import com.st0x0ef.aitools.common.DataComponents.AIToolData;
 import com.st0x0ef.aitools.common.menus.ComputerMenu;
 import com.st0x0ef.aitools.common.recipes.ComputerInput;
 import com.st0x0ef.aitools.common.recipes.ComputerRecipe;
@@ -8,6 +8,7 @@ import com.st0x0ef.aitools.common.registries.BlockEntitiesRegistry;
 import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import com.st0x0ef.aitools.common.registries.RecipesRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -18,6 +19,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -85,11 +88,11 @@ public class ComputerBlockEntity extends BaseContainerBlockEntity {
                 ComputerRecipe recipe = recipeHolder.get().value();
                 ItemStack resultStack = recipe.getResultItem(level.registryAccess()).copy();
 
-                List<BlocksBrokenToolData> blocksBrokenToolDataList = new ArrayList<>();
+                List<AIToolData> AIToolDataList = new ArrayList<>();
                 for (int i = 0; i < 3; i++) {
                     ItemStack stack = getItem(i);
-                    if (stack.has(DataComponentsRegistry.BLOCKS_BROKEN_MAP.get())) {
-                        blocksBrokenToolDataList.add(stack.get(DataComponentsRegistry.BLOCKS_BROKEN_MAP.get()));
+                    if (stack.has(DataComponentsRegistry.AI_TOOL_DATA.get())) {
+                        AIToolDataList.add(stack.get(DataComponentsRegistry.AI_TOOL_DATA.get()));
                     }
                     stack.shrink(1);
 
@@ -98,8 +101,8 @@ public class ComputerBlockEntity extends BaseContainerBlockEntity {
                     }
                 }
 
-                if (blocksBrokenToolDataList.size() == 2) {
-                    resultStack.set(DataComponentsRegistry.BLOCKS_BROKEN_MAP.get(), BlocksBrokenToolData.add(blocksBrokenToolDataList.get(0), blocksBrokenToolDataList.get(1)));
+                if (AIToolDataList.size() == 2) {
+                    resultStack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), AIToolData.add(AIToolDataList.get(0), AIToolDataList.get(1)));
                 }
 
                 setItem(3, resultStack);

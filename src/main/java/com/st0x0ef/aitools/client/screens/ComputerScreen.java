@@ -41,7 +41,7 @@ public class ComputerScreen extends AbstractContainerScreen<ComputerMenu> {
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 16777215, false);
-        guiGraphics.drawString(this.font, Component.literal("Running EndOS..."), this.titleLabelX, this.titleLabelY + 18, 16777215, false);
+        guiGraphics.drawString(this.font, Component.literal("Running DiamondOS..."), this.titleLabelX, this.titleLabelY + 18, 16777215, false);
     }
 
 }
