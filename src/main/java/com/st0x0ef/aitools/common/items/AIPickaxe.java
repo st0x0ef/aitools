@@ -52,7 +52,18 @@ public class AIPickaxe extends PickaxeItem {
             blocksBrokenMap.put(blockLocation, 1);
         }
 
-        stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(blocksBrokenMap, AIItemsUtils.getFortuneLevel(stack)));
+        if (AIItemsUtils.getMiningRadiusLevel(stack) > 0) {
+            List<ResourceLocation> blocksBroken = AIItemsUtils.mineRadius(level, pos, miningEntity, BlockTags.MINEABLE_WITH_PICKAXE, AIItemsUtils.getMiningRadiusLevel(stack));
+            for (ResourceLocation location : blocksBroken) {
+                if (blocksBrokenMap.containsKey(location)) {
+                    blocksBrokenMap.compute(location, (k, currentCount) -> currentCount + 1);
+                } else {
+                    blocksBrokenMap.put(location, 1);
+                }
+            }
+        }
+
+        stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(blocksBrokenMap, AIItemsUtils.getFortuneLevel(stack), AIItemsUtils.getMiningRadiusLevel(stack)));
         AIItemsUtils.syncFortuneToVanillaEnchantments(stack, level.registryAccess());
         return true;
     }

@@ -11,18 +11,19 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public record AIToolData(Map<ResourceLocation, Integer> blocksBrokenData, int fortuneLevel) implements Serializable {
+public record AIToolData(Map<ResourceLocation, Integer> blocksBrokenData, int fortuneLevel, int radiusLevel) implements Serializable {
     public static final Codec<AIToolData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.unboundedMap(ResourceLocation.CODEC, Codec.INT).fieldOf("blocksBrokenData").forGetter(AIToolData::blocksBrokenData),
-            Codec.INT.fieldOf("fortuneLevel").forGetter(AIToolData::fortuneLevel)
+            Codec.INT.fieldOf("fortuneLevel").forGetter(AIToolData::fortuneLevel),
+            Codec.INT.fieldOf("radiusLevel").forGetter(AIToolData::radiusLevel)
     ).apply(instance, AIToolData::new));
 
 
 
-    public static final StreamCodec<ByteBuf, AIToolData> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.map(HashMap::new, ResourceLocation.STREAM_CODEC, ByteBufCodecs.VAR_INT), AIToolData::blocksBrokenData, ByteBufCodecs.INT, AIToolData::fortuneLevel, AIToolData::new);
+    public static final StreamCodec<ByteBuf, AIToolData> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.map(HashMap::new, ResourceLocation.STREAM_CODEC, ByteBufCodecs.VAR_INT), AIToolData::blocksBrokenData, ByteBufCodecs.INT, AIToolData::fortuneLevel, ByteBufCodecs.INT, AIToolData::radiusLevel, AIToolData::new);
 
     public static AIToolData add(AIToolData data1, AIToolData data2) {
-        AIToolData dataToReturn = new AIToolData(data1.blocksBrokenData(), data1.fortuneLevel() + data2.fortuneLevel());
+        AIToolData dataToReturn = new AIToolData(data1.blocksBrokenData(), data1.fortuneLevel() + data2.fortuneLevel(), data1.radiusLevel() + data2.radiusLevel());
         data2.blocksBrokenData().forEach((location, amount) -> {
             dataToReturn.blocksBrokenData.computeIfPresent(location, (location1, actualAmount) -> actualAmount + amount);
             dataToReturn.blocksBrokenData.putIfAbsent(location, amount);

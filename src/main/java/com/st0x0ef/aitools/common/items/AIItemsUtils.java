@@ -3,17 +3,26 @@ package com.st0x0ef.aitools.common.items;
 import com.st0x0ef.aitools.common.components.AIToolData;
 import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,20 +67,30 @@ public class AIItemsUtils {
     public static Map<ResourceLocation, Integer> getBlocksBrokenMap(ItemStack stack) {
         AIToolData blocksBroken = stack.get(DataComponentsRegistry.AI_TOOL_DATA.get());
         if (blocksBroken == null) {
-            stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0));
-            blocksBroken = new AIToolData(new HashMap<>(), 0);
+            blocksBroken = new AIToolData(new HashMap<>(), 0, 0);
+            stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), blocksBroken);
         }
         return blocksBroken.blocksBrokenData();
     }
 
     public static int getFortuneLevel(ItemStack stack) {
-        return stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0)).fortuneLevel();
+        return stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).fortuneLevel();
     }
+
+    public static int getMiningRadiusLevel(ItemStack stack) {
+        return stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).radiusLevel();
+    }
+
 
     public static void createTooltip(ItemStack stack, List<Component> tooltipComponents) {
         int fortuneLevel = AIItemsUtils.getFortuneLevel(stack);
         if (fortuneLevel > 0) {
-            tooltipComponents.add(Component.literal("Fortune level : " + fortuneLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.BLUE));
+            tooltipComponents.add(Component.literal("Fortune level : " + fortuneLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.LIGHT_PURPLE));
+        }
+
+        int radiusLevel = AIItemsUtils.getMiningRadiusLevel(stack);
+        if (radiusLevel > 0) {
+            tooltipComponents.add(Component.literal("Mining radius : " + (radiusLevel * 2 + 1) + "x" + (radiusLevel * 2 + 1)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
         }
 
         Map<ResourceLocation, Integer> blocksBrokenMap = getBlocksBrokenMap(stack);
@@ -86,5 +105,41 @@ public class AIItemsUtils {
                 }
             });
         }
+    }
+
+
+    public static List<ResourceLocation> mineRadius(Level level, BlockPos origin, Entity entity, TagKey<Block> mineableTag, int radius) {
+        Direction faceDir = entity.getDirection();
+        Direction.Axis axis = faceDir.getAxis();
+
+        List<ResourceLocation> blocksBroken = new ArrayList<>();
+
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -radius; dy <= radius; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    if (!isInPlane(axis, dx, dy, dz)) continue;
+                    if (dx == 0 && dy == 0 && dz == 0) continue;
+                    BlockPos targetPos = origin.offset(dx, dy, dz);
+                    BlockState targetState = level.getBlockState(targetPos);
+
+                    if (targetState.isAir()) continue;
+                    if (!targetState.is(mineableTag)) continue;
+                    if (targetState.getDestroySpeed(level, targetPos) < 0) continue;
+
+                    blocksBroken.add(BuiltInRegistries.BLOCK.getKey(targetState.getBlock()));
+                    level.destroyBlock(targetPos, true, entity);
+                }
+            }
+        }
+
+        return blocksBroken;
+    }
+
+    public static boolean isInPlane(Direction.Axis axis, int dx, int dy, int dz) {
+        return switch (axis) {
+            case X -> dy != Integer.MIN_VALUE && dz != Integer.MIN_VALUE && dx == 0;
+            case Y -> dx != Integer.MIN_VALUE && dz != Integer.MIN_VALUE && dy == 0;
+            case Z -> dx != Integer.MIN_VALUE && dy != Integer.MIN_VALUE && dz == 0;
+        };
     }
 }

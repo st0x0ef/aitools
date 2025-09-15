@@ -19,6 +19,7 @@ public class CreativeTabsRegistry {
                 output.accept(ItemsRegistry.AI_SHOVEL.get());
                 output.accept(ItemsRegistry.AI_HOE.get());
                 output.accept(ItemsRegistry.FORTUNE_GEM.get());
+                output.accept(ItemsRegistry.RADIUS_GEM.get());
                 output.accept(ItemsRegistry.COMPUTER_ITEM.get());
             }).build());
 }

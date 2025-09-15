@@ -1,0 +1,18 @@
+{
+  "type": "aitools:computer",
+  "ingredients": [
+    {
+      "item": "aitools:ai_shovel"
+    },
+    {
+      "item": "aitools:radius_gem"
+    },
+    {
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "output": {
+    "id": "aitools:ai_shovel",
+    "count": 1
+  }
+}

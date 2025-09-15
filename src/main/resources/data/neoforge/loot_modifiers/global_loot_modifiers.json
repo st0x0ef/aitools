@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "aitools:fortune_gem"
+    "aitools:fortune_gem",
+    "aitools:radius_gem"
   ]
 }

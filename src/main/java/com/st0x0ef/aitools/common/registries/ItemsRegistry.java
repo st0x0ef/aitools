@@ -25,7 +25,8 @@ public class ItemsRegistry {
     public static final DeferredItem<Item> AI_HOE = ITEMS.registerItem("ai_hoe", p -> new AIHoe(Tiers.STONE, p), new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
 
     // Upgrade Gems
-    public static final DeferredItem<Item> FORTUNE_GEM = ITEMS.registerItem("fortune_gem", p -> new Item(p.component(DataComponentsRegistry.AI_TOOL_DATA, new AIToolData(new HashMap<>(), 1))), new Item.Properties());
+    public static final DeferredItem<Item> FORTUNE_GEM = ITEMS.registerItem("fortune_gem", p -> new Item(p.component(DataComponentsRegistry.AI_TOOL_DATA, new AIToolData(new HashMap<>(), 1, 0))), new Item.Properties());
+    public static final DeferredItem<Item> RADIUS_GEM = ITEMS.registerItem("radius_gem", p -> new Item(p.component(DataComponentsRegistry.AI_TOOL_DATA, new AIToolData(new HashMap<>(), 0, 1))), new Item.Properties());
 
     // Block Items
     public static final DeferredItem<BlockItem> COMPUTER_ITEM = ITEMS.registerItem("computer", p -> new BlockItem(BlocksRegistry.COMPUTER.get(), p), new Item.Properties());
