@@ -1,4 +1,4 @@
-package com.st0x0ef.aitools.common.compats;
+package com.st0x0ef.aitools.common.compats.jei;
 
 import com.st0x0ef.aitools.AITools;
 import com.st0x0ef.aitools.common.registries.ItemsRegistry;
