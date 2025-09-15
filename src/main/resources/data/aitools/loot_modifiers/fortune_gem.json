@@ -1,0 +1,13 @@
+{
+  "type": "aitools:add_item_to_chests",
+  "conditions": [],
+  "item": "aitools:fortune_gem",
+  "min": 1,
+  "max": 1,
+  "chance": 0.1,
+  "tables": [
+    "minecraft:chests/desert_pyramid",
+    "minecraft:chests/jungle_temple",
+    "minecraft:chests/jungle_temple_dispenser"
+  ]
+}

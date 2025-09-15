@@ -1,4 +1,4 @@
-package com.st0x0ef.aitools.common.DataComponents;
+package com.st0x0ef.aitools.common.components;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

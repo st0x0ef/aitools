@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:gems/emerald"
+    },
+    {
+      "tag": "c:ingots/netherite"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:gems/amethyst"
+    }
+  ],
+  "result": {
+    "id": "aitools:fortune_gem",
+    "count": 1
+  }
+}

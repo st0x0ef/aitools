@@ -1,7 +1,7 @@
 package com.st0x0ef.aitools.common.registries;
 
 import com.st0x0ef.aitools.AITools;
-import com.st0x0ef.aitools.common.DataComponents.AIToolData;
+import com.st0x0ef.aitools.common.components.AIToolData;
 import com.st0x0ef.aitools.common.items.AIAxe;
 import com.st0x0ef.aitools.common.items.AIPickaxe;
 import net.minecraft.world.item.BlockItem;

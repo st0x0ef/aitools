@@ -1,6 +1,6 @@
 package com.st0x0ef.aitools.common.items;
 
-import com.st0x0ef.aitools.common.DataComponents.AIToolData;
+import com.st0x0ef.aitools.common.components.AIToolData;
 import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;

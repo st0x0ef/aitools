@@ -1,6 +1,6 @@
 package com.st0x0ef.aitools.common.blocks.entities;
 
-import com.st0x0ef.aitools.common.DataComponents.AIToolData;
+import com.st0x0ef.aitools.common.components.AIToolData;
 import com.st0x0ef.aitools.common.menus.ComputerMenu;
 import com.st0x0ef.aitools.common.recipes.ComputerInput;
 import com.st0x0ef.aitools.common.recipes.ComputerRecipe;
@@ -8,7 +8,6 @@ import com.st0x0ef.aitools.common.registries.BlockEntitiesRegistry;
 import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import com.st0x0ef.aitools.common.registries.RecipesRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -19,8 +18,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;

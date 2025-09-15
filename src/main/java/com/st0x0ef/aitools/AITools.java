@@ -23,5 +23,6 @@ public class AITools {
         MenuTypesRegistry.MENU_TYPE.register(bus);
         RecipesRegistry.RECIPE_TYPE.register(bus);
         RecipesRegistry.RECIPE_SERIALIZER.register(bus);
+        LootModifiersRegistry.LOOT_MODIFIER_SERIALIZERS.register(bus);
     }
 }
