@@ -16,6 +16,7 @@ public class CreativeTabsRegistry {
             .displayItems((parameters, output) -> {
                 output.accept(ItemsRegistry.AI_PICKAXE.get());
                 output.accept(ItemsRegistry.AI_AXE.get());
+                output.accept(ItemsRegistry.AI_SHOVEL.get());
                 output.accept(ItemsRegistry.FORTUNE_GEM.get());
                 output.accept(ItemsRegistry.COMPUTER_ITEM.get());
             }).build());

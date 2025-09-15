@@ -4,6 +4,7 @@ import com.st0x0ef.aitools.AITools;
 import com.st0x0ef.aitools.common.components.AIToolData;
 import com.st0x0ef.aitools.common.items.AIAxe;
 import com.st0x0ef.aitools.common.items.AIPickaxe;
+import com.st0x0ef.aitools.common.items.AIShovel;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -19,6 +20,7 @@ public class ItemsRegistry {
     // Tools
     public static final DeferredItem<Item> AI_PICKAXE = ITEMS.registerItem("ai_pickaxe", p -> new AIPickaxe(Tiers.STONE, p), new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
     public static final DeferredItem<Item> AI_AXE = ITEMS.registerItem("ai_axe", p -> new AIAxe(Tiers.STONE, p), new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
+    public static final DeferredItem<Item> AI_SHOVEL = ITEMS.registerItem("ai_shovel", p -> new AIShovel(Tiers.STONE, p), new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
 
     // Upgrade Gems
     public static final DeferredItem<Item> FORTUNE_GEM = ITEMS.registerItem("fortune_gem", p -> new Item(p.component(DataComponentsRegistry.AI_TOOL_DATA, new AIToolData(new HashMap<>(), 1))), new Item.Properties());
