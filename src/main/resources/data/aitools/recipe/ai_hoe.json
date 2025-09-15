@@ -1,0 +1,18 @@
+{
+  "type": "aitools:computer",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_hoe"
+    },
+    {
+      "item": "minecraft:diamond_hoe"
+    },
+    {
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "output": {
+    "id": "aitools:ai_hoe",
+    "count": 1
+  }
+}
