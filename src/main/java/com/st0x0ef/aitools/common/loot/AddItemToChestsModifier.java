@@ -43,7 +43,7 @@ public class AddItemToChestsModifier extends LootModifier {
     @Override
     protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         ResourceLocation tableId = context.getQueriedLootTableId();
-        if (tableId != null && tables.contains(tableId) && context.getRandom().nextFloat() < chance) {
+        if (tables.contains(tableId) && context.getRandom().nextFloat() < chance) {
             int bound = Math.max(1, (max - min) + 1);
             int count = min + context.getRandom().nextInt(bound);
             if (count > 0) generatedLoot.add(new ItemStack(item, count));
