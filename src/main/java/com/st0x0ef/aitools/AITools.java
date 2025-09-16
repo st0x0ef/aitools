@@ -1,6 +1,8 @@
 package com.st0x0ef.aitools;
 
+import com.st0x0ef.aitools.common.config.Config;
 import com.st0x0ef.aitools.common.registries.*;
+import net.neoforged.fml.config.ModConfig;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -24,5 +26,7 @@ public class AITools {
         RecipesRegistry.RECIPE_TYPE.register(bus);
         RecipesRegistry.RECIPE_SERIALIZER.register(bus);
         LootModifiersRegistry.LOOT_MODIFIER_SERIALIZERS.register(bus);
+
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 }

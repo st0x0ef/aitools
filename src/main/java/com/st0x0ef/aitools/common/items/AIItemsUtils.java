@@ -1,6 +1,7 @@
 package com.st0x0ef.aitools.common.items;
 
 import com.st0x0ef.aitools.common.components.AIToolData;
+import com.st0x0ef.aitools.common.config.Config;
 import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -42,7 +43,7 @@ public class AIItemsUtils {
             speedMultiplier = (float) Math.log10(blocksBroken - 400f);
         }
 
-        return speedMultiplier;
+        return Math.min(speedMultiplier, Config.MAX_SPEED_MULTIPLIER.getAsInt());
     }
 
     public static void syncFortuneToVanillaEnchantments(ItemStack stack, HolderLookup.Provider registries) {
@@ -74,11 +75,11 @@ public class AIItemsUtils {
     }
 
     public static int getFortuneLevel(ItemStack stack) {
-        return stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).fortuneLevel();
+        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).fortuneLevel(), Config.MAX_FORTUNE_LEVEL.getAsInt());
     }
 
     public static int getMiningRadiusLevel(ItemStack stack) {
-        return stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).radiusLevel();
+        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).radiusLevel(), Config.MAX_MINING_RADIUS.getAsInt());
     }
 
 

@@ -9,5 +9,17 @@
   "item.aitools.fortune_gem": "Fortune Gem",
   "item.aitools.radius_gem": "Radius Gem",
 
-  "block.aitools.computer": "Computer"
+  "block.aitools.computer": "Computer",
+
+  "aitools.configuration.maxMiningRadius": "Max Mining Radius",
+  "aitools.configuration.maxFortuneLevel": "Max Fortune Level",
+  "aitools.configuration.maxSpeedMultiplier": "Max Speed Multiplier",
+
+  "aitools.configuration.maxSpeedMultiplier.tooltip": "The maximum speed multiplier for the AI Tools.",
+  "aitools.configuration.maxMiningRadius.tooltip": "The maximum mining radius level for the AI Tools. The radius is calculated as (2 * radiusLevel + 1).",
+  "aitools.configuration.maxFortuneLevel.tooltip": "The maximum fortune level for the AI Tools.",
+
+  "aitools.configuration.title": "AI Tools Configuration",
+  "aitools.configuration.section.aitools.common.toml": "AI Tools Common Configuration",
+  "aitools.configuration.section.aitools.common.toml.title": "AI Tools Common Configuration"
 }
