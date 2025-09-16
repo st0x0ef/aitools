@@ -72,7 +72,7 @@ dependencies {
     runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
 }
 
-def resourceTargets = ["META-INF/neoforge.mods.toml", /*"pack.mcmeta"*/]
+def resourceTargets = ["META-INF/neoforge.mods.toml", "pack.mcmeta"]
 def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/production/${project.name}.main/", "$rootDir/bin/main/"]
 def replaceProperties = [
         minecraft_version      : minecraft_version,
