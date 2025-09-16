@@ -63,7 +63,7 @@ public class AIPickaxe extends PickaxeItem {
             }
         }
 
-        stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(blocksBrokenMap, AIItemsUtils.getFortuneLevel(stack), AIItemsUtils.getMiningRadiusLevel(stack)));
+        stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(blocksBrokenMap, AIItemsUtils.getFortuneLevel(stack) + AIItemsUtils.getRandomChangeToGetFortuneUpgrade(stack), AIItemsUtils.getMiningRadiusLevel(stack) + AIItemsUtils.getRandomChangeToGetRadiusUpgrade(stack)));
         AIItemsUtils.syncFortuneToVanillaEnchantments(stack, level.registryAccess());
         return true;
     }

@@ -79,7 +79,7 @@ public class AIItemsUtils {
     }
 
     public static int getMiningRadiusLevel(ItemStack stack) {
-        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).radiusLevel(), Config.MAX_MINING_RADIUS.getAsInt());
+        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).radiusLevel(), Config.MAX_RADIUS_LEVEL.getAsInt());
     }
 
 
@@ -142,5 +142,29 @@ public class AIItemsUtils {
             case Y -> dx != Integer.MIN_VALUE && dz != Integer.MIN_VALUE && dy == 0;
             case Z -> dx != Integer.MIN_VALUE && dy != Integer.MIN_VALUE && dz == 0;
         };
+    }
+
+    public static int getRandomChangeToGetFortuneUpgrade(ItemStack stack) {
+        int actualFortuneLevel = getFortuneLevel(stack);
+        Map<ResourceLocation, Integer> blocksBrokenMap = getBlocksBrokenMap(stack);
+
+        if (actualFortuneLevel >= Config.MAX_FORTUNE_LEVEL.getAsInt()) {
+            return 0;
+        }
+        int numberOfBlocksBroken = blocksBrokenMap.values().stream().mapToInt(Integer::intValue).sum();
+        double chance = Math.min(0.25f, (numberOfBlocksBroken / 10000f - actualFortuneLevel) * 0.01f);
+        return Math.random() < chance ? 1 : 0;
+    }
+
+    public static int getRandomChangeToGetRadiusUpgrade(ItemStack stack) {
+        int actualRadiusLevel = getMiningRadiusLevel(stack);
+        Map<ResourceLocation, Integer> blocksBrokenMap = getBlocksBrokenMap(stack);
+
+        if (actualRadiusLevel >= Config.MAX_RADIUS_LEVEL.getAsInt()) {
+            return 0;
+        }
+        int numberOfBlocksBroken = blocksBrokenMap.values().stream().mapToInt(Integer::intValue).sum();
+        double chance = Math.min(0.25f, (numberOfBlocksBroken / 10000f - actualRadiusLevel) * 0.01f);
+        return Math.random() < chance ? 1 : 0;
     }
 }

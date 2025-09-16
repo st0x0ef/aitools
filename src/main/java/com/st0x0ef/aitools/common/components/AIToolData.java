@@ -25,7 +25,7 @@ public record AIToolData(Map<ResourceLocation, Integer> blocksBrokenData, int fo
 
     public static AIToolData add(AIToolData data1, AIToolData data2) {
         int newFortuneLevel = Math.min(data1.fortuneLevel() + data2.fortuneLevel(), Config.MAX_FORTUNE_LEVEL.getAsInt());
-        int newRadiusLevel = Math.min(data1.radiusLevel() + data2.radiusLevel(), Config.MAX_MINING_RADIUS.getAsInt());
+        int newRadiusLevel = Math.min(data1.radiusLevel() + data2.radiusLevel(), Config.MAX_RADIUS_LEVEL.getAsInt());
 
         AIToolData dataToReturn = new AIToolData(data1.blocksBrokenData(), newFortuneLevel, newRadiusLevel);
         data2.blocksBrokenData().forEach((location, amount) -> {
