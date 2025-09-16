@@ -9,9 +9,6 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 description='''${mod_description}'''
 
-[[mixins]]
-config="aitools.mixins.json"
-
 [[dependencies.aitools]]
     modId="neoforge"
     type="required"
