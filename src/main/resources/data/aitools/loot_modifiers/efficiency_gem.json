@@ -1,0 +1,12 @@
+{
+  "type": "aitools:add_item_to_chests",
+  "conditions": [],
+  "item": "aitools:fortune_gem",
+  "min": 1,
+  "max": 1,
+  "chance": 0.1,
+  "tables": [
+    "minecraft:chests/abandoned_mineshaft",
+    "minecraft:chests/ruined_portal"
+  ]
+}

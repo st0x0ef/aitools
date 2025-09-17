@@ -1,7 +1,5 @@
 package com.st0x0ef.aitools.common.items;
 
-import com.st0x0ef.aitools.common.components.AIToolData;
-import com.st0x0ef.aitools.common.registries.DataComponentsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -27,7 +25,7 @@ public class AIPickaxe extends PickaxeItem {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         ResourceLocation blockLocation = BuiltInRegistries.BLOCK.getKey(state.getBlock());
-        float miningSpeedMultiplier = AIItemsUtils.getMiningSpeedMultiplier(AIItemsUtils.getBlocksBrokenMap(stack), blockLocation);
+        float miningSpeedMultiplier = AIItemsUtils.getMiningSpeedMultiplier(stack, blockLocation);
         return super.getDestroySpeed(stack, state) * miningSpeedMultiplier;
     }
 
@@ -63,7 +61,8 @@ public class AIPickaxe extends PickaxeItem {
             }
         }
 
-        stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(blocksBrokenMap, AIItemsUtils.getFortuneLevel(stack) + AIItemsUtils.getRandomChangeToGetFortuneUpgrade(stack), AIItemsUtils.getMiningRadiusLevel(stack) + AIItemsUtils.getRandomChangeToGetRadiusUpgrade(stack)));
+        AIItemsUtils.setData(stack, blocksBrokenMap);
+
         AIItemsUtils.syncFortuneToVanillaEnchantments(stack, level.registryAccess());
         return true;
     }

@@ -1,0 +1,18 @@
+{
+  "type": "aitools:computer",
+  "ingredients": [
+    {
+      "item": "aitools:ai_axe"
+    },
+    {
+      "item": "aitools:efficiency_gem"
+    },
+    {
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "output": {
+    "id": "aitools:ai_axe",
+    "count": 1
+  }
+}

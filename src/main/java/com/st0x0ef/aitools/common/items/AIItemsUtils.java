@@ -24,14 +24,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AIItemsUtils {
-    public static float getMiningSpeedMultiplier(Map<ResourceLocation, Integer> blocksBrokenMap, ResourceLocation blockLocation) {
-        int blocksBroken = blocksBrokenMap.getOrDefault(blockLocation, 0);
+    public static float getMiningSpeedMultiplier(ItemStack stack, ResourceLocation blockLocation) {
+        int blocksBroken = getBlocksBrokenMap(stack).getOrDefault(blockLocation, 0);
 
         float speedMultiplier;
 
@@ -42,6 +41,8 @@ public class AIItemsUtils {
         } else {
             speedMultiplier = (float) Math.log10(blocksBroken - 400f);
         }
+
+        speedMultiplier *= (1f + getEfficiencyLevel(stack) * 0.2f);
 
         return Math.min(speedMultiplier, Config.MAX_SPEED_MULTIPLIER.getAsInt());
     }
@@ -68,18 +69,22 @@ public class AIItemsUtils {
     public static Map<ResourceLocation, Integer> getBlocksBrokenMap(ItemStack stack) {
         AIToolData blocksBroken = stack.get(DataComponentsRegistry.AI_TOOL_DATA.get());
         if (blocksBroken == null) {
-            blocksBroken = new AIToolData(new HashMap<>(), 0, 0);
+            blocksBroken = AIToolData.empty();
             stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), blocksBroken);
         }
         return blocksBroken.blocksBrokenData();
     }
 
     public static int getFortuneLevel(ItemStack stack) {
-        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).fortuneLevel(), Config.MAX_FORTUNE_LEVEL.getAsInt());
+        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), AIToolData.empty()).fortuneLevel(), Config.MAX_FORTUNE_LEVEL.getAsInt());
     }
 
     public static int getMiningRadiusLevel(ItemStack stack) {
-        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(new HashMap<>(), 0, 0)).radiusLevel(), Config.MAX_RADIUS_LEVEL.getAsInt());
+        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), AIToolData.empty()).radiusLevel(), Config.MAX_RADIUS_LEVEL.getAsInt());
+    }
+
+    public static int getEfficiencyLevel(ItemStack stack) {
+        return Math.min(stack.getOrDefault(DataComponentsRegistry.AI_TOOL_DATA.get(), AIToolData.empty()).efficiencyLevel(), Config.MAX_EFFICIENCY_LEVEL.getAsInt());
     }
 
 
@@ -166,5 +171,21 @@ public class AIItemsUtils {
         int numberOfBlocksBroken = blocksBrokenMap.values().stream().mapToInt(Integer::intValue).sum();
         double chance = Math.min(0.25f, (numberOfBlocksBroken / 10000f - actualRadiusLevel) * 0.01f);
         return Math.random() < chance ? 1 : 0;
+    }
+
+    public static int getRandomChangeToGetEfficiencyUpgrade(ItemStack stack) {
+        int actualEfficiencyLevel = getEfficiencyLevel(stack);
+        Map<ResourceLocation, Integer> blocksBrokenMap = getBlocksBrokenMap(stack);
+
+        if (actualEfficiencyLevel >= Config.MAX_EFFICIENCY_LEVEL.getAsInt()) {
+            return 0;
+        }
+        int numberOfBlocksBroken = blocksBrokenMap.values().stream().mapToInt(Integer::intValue).sum();
+        double chance = Math.min(0.25f, (numberOfBlocksBroken / 10000f - actualEfficiencyLevel) * 0.01f);
+        return Math.random() < chance ? 1 : 0;
+    }
+
+    public static void setData(ItemStack stack, Map<ResourceLocation, Integer> newBlocksBrokenMap) {
+        stack.set(DataComponentsRegistry.AI_TOOL_DATA.get(), new AIToolData(newBlocksBrokenMap, AIItemsUtils.getFortuneLevel(stack) + AIItemsUtils.getRandomChangeToGetFortuneUpgrade(stack), AIItemsUtils.getMiningRadiusLevel(stack) + AIItemsUtils.getRandomChangeToGetRadiusUpgrade(stack), AIItemsUtils.getEfficiencyLevel(stack) + AIItemsUtils.getRandomChangeToGetEfficiencyUpgrade(stack)));
     }
 }

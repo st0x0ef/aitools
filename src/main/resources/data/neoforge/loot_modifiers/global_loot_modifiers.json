@@ -2,6 +2,7 @@
   "replace": false,
   "entries": [
     "aitools:fortune_gem",
-    "aitools:radius_gem"
+    "aitools:radius_gem",
+    "aitools:efficiency_gem"
   ]
 }
