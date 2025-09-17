@@ -1,0 +1,22 @@
+{
+  "itemGroup.aitools": "Outils IA",
+  "item.aitools.ai_pickaxe": "Pioche IA",
+  "item.aitools.ai_axe": "Hache IA",
+  "item.aitools.ai_shovel": "Pelle IA",
+  "item.aitools.ai_hoe": "Houe IA",
+  "item.aitools.fortune_gem": "Gemme de Fortune",
+  "item.aitools.radius_gem": "Gemme de Rayon",
+  "item.aitools.efficiency_gem": "Gemme d'Efficacité",
+  "block.aitools.computer": "Ordinateur",
+  "aitools.configuration.maxRadiusLevel": "Niveau Maximal du Rayon",
+  "aitools.configuration.maxFortuneLevel": "Niveau Maximum de Fortune",
+  "aitools.configuration.maxSpeedMultiplier": "Multiplicateur Maximum de la Vitesse",
+  "aitools.configuration.maxEfficiencyLevel": "Niveau Maximum d'Efficacité",
+  "aitools.configuration.maxSpeedMultiplier.tooltip": "Le multiplicateur de vitesse maximale pour les Outils d'IA.",
+  "aitools.configuration.maxRadiusLevel.tooltip": "Le niveau maximum de rayon de minage pour les outils d'IA. Le rayon est calculé par la formule (2 * radiusLevel + 1).",
+  "aitools.configuration.maxFortuneLevel.tooltip": "Le niveau de fortune maximum pour les outils d'IA.",
+  "aitools.configuration.maxEfficiencyLevel.tooltip": "Le niveau d'efficacité maximum pour les outils d'IA.",
+  "aitools.configuration.title": "Configuration d'AI Tools",
+  "aitools.configuration.section.aitools.common.toml": "Configuration Commune d'AI Tools",
+  "aitools.configuration.section.aitools.common.toml.title": "Configuration commune d'AI Tools"
+}
