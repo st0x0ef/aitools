@@ -15,7 +15,7 @@
   "aitools.configuration.maxRadiusLevel": "Max Radius Level",
   "aitools.configuration.maxFortuneLevel": "Max Fortune Level",
   "aitools.configuration.maxSpeedMultiplier": "Max Speed Multiplier",
-  "aitools.configuration.maxEfficiencyLevel": "Max Speed Multiplier",
+  "aitools.configuration.maxEfficiencyLevel": "Max Efficiency Level",
 
   "aitools.configuration.maxSpeedMultiplier.tooltip": "The maximum speed multiplier for the AI Tools.",
   "aitools.configuration.maxRadiusLevel.tooltip": "The maximum mining radius level for the AI Tools. The radius is calculated as (2 * radiusLevel + 1).",
