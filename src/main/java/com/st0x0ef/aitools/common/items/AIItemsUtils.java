@@ -99,6 +99,11 @@ public class AIItemsUtils {
             tooltipComponents.add(Component.literal("Mining radius : " + (radiusLevel * 2 + 1) + "x" + (radiusLevel * 2 + 1)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
         }
 
+        int efficiencyLevel = AIItemsUtils.getEfficiencyLevel(stack);
+        if (efficiencyLevel > 0) {
+            tooltipComponents.add(Component.literal("Efficiency level : " + efficiencyLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN));
+        }
+
         Map<ResourceLocation, Integer> blocksBrokenMap = getBlocksBrokenMap(stack);
 
         if (!blocksBrokenMap.isEmpty()) {
