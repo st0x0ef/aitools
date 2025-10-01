@@ -1,0 +1,22 @@
+{
+  "itemGroup.aitools": "Ferramentas IA",
+  "item.aitools.ai_pickaxe": "Picareta IA",
+  "item.aitools.ai_axe": "Machado IA",
+  "item.aitools.ai_shovel": "Pá IA",
+  "item.aitools.ai_hoe": "Enxada IA",
+  "item.aitools.fortune_gem": "Gema da Fortuna",
+  "item.aitools.radius_gem": "Gema do Raio",
+  "item.aitools.efficiency_gem": "Gema da Eficiência",
+  "block.aitools.computer": "Computador",
+  "aitools.configuration.maxRadiusLevel": "Nível Máximo de Raio",
+  "aitools.configuration.maxFortuneLevel": "Nível Máximo de Fortuna",
+  "aitools.configuration.maxSpeedMultiplier": "Multiplicador Máximo de Velocidade",
+  "aitools.configuration.maxEfficiencyLevel": "Nível Máximo de Eficiência",
+  "aitools.configuration.maxSpeedMultiplier.tooltip": "O Multiplicador Máximo de Velocidade para as Ferramentas IA.",
+  "aitools.configuration.maxRadiusLevel.tooltip": "O Raio Máximo de Mineração para as Ferramentas IA. O Raio é calculado como (2 * radiusLevel + 1).",
+  "aitools.configuration.maxFortuneLevel.tooltip": "O Nível Máximo de Fortuna para as Ferramentas IA.",
+  "aitools.configuration.maxEfficiencyLevel.tooltip": "O Nível Máximo de Eficiência para as Ferramentas IA.",
+  "aitools.configuration.title": "Configurações das Ferramentas IA",
+  "aitools.configuration.section.aitools.common.toml": "Configurações Comuns das Ferramentas IA",
+  "aitools.configuration.section.aitools.common.toml.title": "Configurações Comuns das Ferramentas IA"
+}

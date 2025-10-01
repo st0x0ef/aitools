@@ -1,0 +1,22 @@
+{
+  "itemGroup.aitools": "Инструменты ИИ",
+  "item.aitools.ai_pickaxe": "ИИ-кирка",
+  "item.aitools.ai_axe": "ИИ-топор",
+  "item.aitools.ai_shovel": "ИИ-лопата",
+  "item.aitools.ai_hoe": "ИИ-мотыга",
+  "item.aitools.fortune_gem": "Драгоценный камень удачи",
+  "item.aitools.radius_gem": "Драгоценный камень радиуса",
+  "item.aitools.efficiency_gem": "Драгоценный камень эффективности",
+  "block.aitools.computer": "Компьютер",
+  "aitools.configuration.maxRadiusLevel": "Максимальный уровень радиуса",
+  "aitools.configuration.maxFortuneLevel": "Максимальный уровень удачи",
+  "aitools.configuration.maxSpeedMultiplier": "Максимальный множитель скорости",
+  "aitools.configuration.maxEfficiencyLevel": "Максимальный уровень эффективности",
+  "aitools.configuration.maxSpeedMultiplier.tooltip": "Максимальный множитель скорости для инструментов ИИ.",
+  "aitools.configuration.maxRadiusLevel.tooltip": "Максимальный радиус добычи для инструментов ИИ. Радиус рассчитывается как (2 * уровень радиуса + 1).",
+  "aitools.configuration.maxFortuneLevel.tooltip": "Максимальный уровень удачи для инструментов ИИ.",
+  "aitools.configuration.maxEfficiencyLevel.tooltip": "Максимальный уровень эффективности для инструментов ИИ.",
+  "aitools.configuration.title": "Конфигурация инструментов ИИ",
+  "aitools.configuration.section.aitools.common.toml": "Общая конфигурация инструментов ИИ",
+  "aitools.configuration.section.aitools.common.toml.title": "Общая конфигурация инструментов ИИ"
+}
