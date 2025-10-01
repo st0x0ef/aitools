@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.107'
     id 'idea'
+    id "me.modmuss50.mod-publish-plugin" version "1.0.0"
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -18,7 +19,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "${rootProject.mod_id}-${rootProject.minecraft_version}"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -108,14 +109,48 @@ processResources {
 
 publishing {
     publications {
-        register('mavenJava', MavenPublication) {
+        mavenJava(MavenPublication) {
+            groupId "com.st0x0ef.aitools"
+            artifactId "aitools-" + minecraft_version
+            version mod_version
             from components.java
+            pom {
+                name = "AI Tools"
+                url = "https://github.com/s0x0ef/aitools"
+            }
         }
     }
+
     repositories {
         maven {
-            url "file://${project.projectDir}/repo"
+            url = "https://maven.exodusstudio.org/releases/"
+            credentials {
+                username = System.getenv("EXODUS_MAVEN_USERNAME") // DO NOT CHANGE
+                password = System.getenv("EXODUS_MAVEN_KEY") // DO NOT CHANGE
+            }
         }
+    }
+}
+
+publishMods {
+    file = file("../aitools/build/libs/aitools-${minecraft_version}-${mod_version}.jar")
+    changelog = file("../aitools/changelog.md").getText('UTF-8')
+    type = STABLE
+    displayName = "[${minecraft_version}] AI Tools ${mod_version}"
+    modLoaders.add("neoforge")
+
+    curseforge {
+        projectId = "1348980"
+        projectSlug = "aitools"
+        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        minecraftVersions.add("${minecraft_version}")
+        javaVersions.add(JavaVersion.VERSION_21)
+    }
+
+    modrinth {
+        projectId = "VtxwPeC6"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add("${minecraft_version}")
     }
 }
 
