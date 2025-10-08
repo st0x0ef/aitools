@@ -66,11 +66,11 @@ configurations {
 }
 
 dependencies {
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    //compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    //runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
-    compileOnly "me.shedaniel:RoughlyEnoughItems-api-neoforge:${rei_version}"
-    runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+    //compileOnly "me.shedaniel:RoughlyEnoughItems-api-neoforge:${rei_version}"
+    //runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
 }
 
 def resourceTargets = ["META-INF/neoforge.mods.toml", "pack.mcmeta"]

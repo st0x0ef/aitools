@@ -10,18 +10,13 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public record ComputerRecipe(List<Ingredient> recipeItems, ItemStack output) implements Recipe<ComputerInput> {
-    public static RecipeType<?> TYPE = RecipesRegistry.COMPUTER_TYPE.get();
-
     @Override
     public boolean matches(ComputerInput container, Level level) {
         for (int i = 0; i < ((ComputerBlockEntity) container.entity()).getContainerSize() - 1; i++) {
@@ -38,17 +33,6 @@ public record ComputerRecipe(List<Ingredient> recipeItems, ItemStack output) imp
         return this.output.copy();
     }
 
-    @Override
-    public boolean canCraftInDimensions(int i, int j) {
-        return true;
-    }
-
-    @Override
-    public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return output;
-    }
-
-    @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.createWithCapacity(this.recipeItems.size());
         list.addAll(this.recipeItems);
@@ -56,16 +40,26 @@ public record ComputerRecipe(List<Ingredient> recipeItems, ItemStack output) imp
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<ComputerRecipe> getSerializer() {
         return RecipesRegistry.COMPUTER_SERIALIZED.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return TYPE;
+    public RecipeType<ComputerRecipe> getType() {
+        return RecipesRegistry.COMPUTER_TYPE.get();
     }
 
-    public static class Serializer implements RecipeSerializer<ComputerRecipe> {
+    @Override
+    public PlacementInfo placementInfo() {
+        return PlacementInfo.create(getIngredients());
+    }
+
+    @Override
+    public RecipeBookCategory recipeBookCategory() {
+        return RecipeBookCategories.CRAFTING_MISC;
+    }
+
+    public static class  Serializer implements RecipeSerializer<ComputerRecipe> {
 
         public static final MapCodec<ComputerRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Ingredient.CODEC.listOf(1, 3).fieldOf("ingredients").forGetter(r -> r.recipeItems),

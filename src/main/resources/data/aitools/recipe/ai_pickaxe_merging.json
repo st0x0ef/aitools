@@ -1,15 +1,9 @@
 {
   "type": "aitools:computer",
   "ingredients": [
-    {
-      "item": "aitools:ai_pickaxe"
-    },
-    {
-      "item": "aitools:ai_pickaxe"
-    },
-    {
-      "tag": "c:gems/diamond"
-    }
+    "aitools:ai_pickaxe",
+    "aitools:ai_pickaxe",
+    "#c:gems/diamond"
   ],
   "output": {
     "id": "aitools:ai_pickaxe",

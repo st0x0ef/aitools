@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -15,11 +16,12 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class AIPickaxe extends PickaxeItem {
+public class AIPickaxe extends Item {
 
-    public AIPickaxe(Tier tier, Properties properties) {
-        super(tier, properties);
+    public AIPickaxe(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -29,7 +31,6 @@ public class AIPickaxe extends PickaxeItem {
         return super.getDestroySpeed(stack, state) * miningSpeedMultiplier;
     }
 
-
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         return state.is(BlockTags.MINEABLE_WITH_PICKAXE);
@@ -37,7 +38,7 @@ public class AIPickaxe extends PickaxeItem {
 
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
-        if (level.isClientSide || !state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
+        if (level.isClientSide() || !state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
             return true;
         }
 
@@ -77,12 +78,12 @@ public class AIPickaxe extends PickaxeItem {
     }
 
     @Override
-    public boolean isEnchantable(ItemStack stack) {
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         return false;
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        AIItemsUtils.createTooltip(stack, tooltipComponents);
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> component, TooltipFlag flag) {
+        AIItemsUtils.createTooltip(stack, component);
     }
 }

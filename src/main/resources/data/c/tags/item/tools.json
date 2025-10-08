@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "aitools:ai_pickaxe"
+    "aitools:ai_pickaxe",
+    "aitools:ai_axe",
+    "aitools:ai_shovel",
+    "aitools:ai_hoe"
   ]
 }

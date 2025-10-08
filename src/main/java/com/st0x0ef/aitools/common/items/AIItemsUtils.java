@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 
 public class AIItemsUtils {
     public static float getMiningSpeedMultiplier(ItemStack stack, ResourceLocation blockLocation) {
@@ -88,31 +89,31 @@ public class AIItemsUtils {
     }
 
 
-    public static void createTooltip(ItemStack stack, List<Component> tooltipComponents) {
+    public static void createTooltip(ItemStack stack, Consumer<Component> tooltipComponents) {
         int fortuneLevel = AIItemsUtils.getFortuneLevel(stack);
         if (fortuneLevel > 0) {
-            tooltipComponents.add(Component.literal("Fortune level : " + fortuneLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.LIGHT_PURPLE));
+            tooltipComponents.accept(Component.literal("Fortune level : " + fortuneLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.LIGHT_PURPLE));
         }
 
         int radiusLevel = AIItemsUtils.getMiningRadiusLevel(stack);
         if (radiusLevel > 0) {
-            tooltipComponents.add(Component.literal("Mining radius : " + (radiusLevel * 2 + 1) + "x" + (radiusLevel * 2 + 1)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
+            tooltipComponents.accept(Component.literal("Mining radius : " + (radiusLevel * 2 + 1) + "x" + (radiusLevel * 2 + 1)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
         }
 
         int efficiencyLevel = AIItemsUtils.getEfficiencyLevel(stack);
         if (efficiencyLevel > 0) {
-            tooltipComponents.add(Component.literal("Efficiency level : " + efficiencyLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN));
+            tooltipComponents.accept(Component.literal("Efficiency level : " + efficiencyLevel).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GREEN));
         }
 
         Map<ResourceLocation, Integer> blocksBrokenMap = getBlocksBrokenMap(stack);
 
         if (!blocksBrokenMap.isEmpty()) {
-            tooltipComponents.add(Component.literal("Blocks broken : ").withStyle(ChatFormatting.GRAY));
+            tooltipComponents.accept(Component.literal("Blocks broken : ").withStyle(ChatFormatting.GRAY));
 
             AtomicInteger i = new AtomicInteger();
             blocksBrokenMap.forEach((location, amount) -> {
                 if (i.incrementAndGet() <= 10) {
-                    tooltipComponents.add(Component.literal(location.toString() + " x " + amount).withStyle(ChatFormatting.GRAY));
+                    tooltipComponents.accept(Component.literal(location.toString() + " x " + amount).withStyle(ChatFormatting.GRAY));
                 }
             });
         }

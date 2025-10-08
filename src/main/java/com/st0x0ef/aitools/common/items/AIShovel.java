@@ -1,25 +1,35 @@
 package com.st0x0ef.aitools.common.items;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.neoforged.neoforge.common.ItemAbilities;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class AIShovel extends ShovelItem {
+public class AIShovel extends Item {
 
-    public AIShovel(Tier tier, Properties properties) {
-        super(tier, properties);
+    public AIShovel( Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -37,7 +47,7 @@ public class AIShovel extends ShovelItem {
 
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
-        if (level.isClientSide || !state.is(BlockTags.MINEABLE_WITH_SHOVEL)) {
+        if (level.isClientSide() || !state.is(BlockTags.MINEABLE_WITH_SHOVEL)) {
             return true;
         }
 
@@ -67,6 +77,39 @@ public class AIShovel extends ShovelItem {
         return true;
     }
 
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
+        BlockState blockstate = level.getBlockState(blockpos);
+        if (context.getClickedFace() == Direction.DOWN) {
+            return InteractionResult.PASS;
+        } else {
+            Player player = context.getPlayer();
+            BlockState blockstate1 = blockstate.getToolModifiedState(context, ItemAbilities.SHOVEL_FLATTEN, false);
+            BlockState blockstate2;
+            if (blockstate1 != null && level.getBlockState(blockpos.above()).isAir()) {
+                level.playSound(player, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                blockstate2 = blockstate1;
+            } else if ((blockstate2 = blockstate.getToolModifiedState(context, ItemAbilities.SHOVEL_DOUSE, false)) != null && !level.isClientSide()) {
+                level.levelEvent(null, 1009, blockpos, 0);
+            }
+
+            if (blockstate2 != null) {
+                if (!level.isClientSide()) {
+                    level.setBlock(blockpos, blockstate2, 11);
+                    level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(player, blockstate2));
+                    if (player != null) {
+                        context.getItemInHand().hurtAndBreak(1, player, context.getHand().asEquipmentSlot());
+                    }
+                }
+
+                return InteractionResult.SUCCESS;
+            } else {
+                return InteractionResult.PASS;
+            }
+        }
+    }
+
     @Override
     public int getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment) {
         if (enchantment.is(Enchantments.FORTUNE)) {
@@ -77,12 +120,12 @@ public class AIShovel extends ShovelItem {
     }
 
     @Override
-    public boolean isEnchantable(ItemStack stack) {
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         return false;
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        AIItemsUtils.createTooltip(stack, tooltipComponents);
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> component, TooltipFlag flag) {
+        AIItemsUtils.createTooltip(stack, component);
     }
 }

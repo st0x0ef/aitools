@@ -10,6 +10,8 @@
   "item.aitools.radius_gem": "Radius Gem",
   "item.aitools.efficiency_gem": "Efficiency Gem",
 
+  "item.aitools.computer": "Computer",
+
   "block.aitools.computer": "Computer",
 
   "aitools.configuration.maxRadiusLevel": "Max Radius Level",

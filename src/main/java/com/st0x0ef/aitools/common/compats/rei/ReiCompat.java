@@ -1,4 +1,4 @@
-package com.st0x0ef.aitools.common.compats.rei;
+/*package com.st0x0ef.aitools.common.compats.rei;
 
 import com.st0x0ef.aitools.common.recipes.ComputerRecipe;
 import com.st0x0ef.aitools.common.registries.BlocksRegistry;
@@ -23,3 +23,4 @@ public class ReiCompat implements REIClientPlugin {
         registry.registerRecipeFiller(ComputerRecipe.class, (RecipeType<? super ComputerRecipe>) ComputerRecipe.TYPE, ComputerDisplay::new);
     }
 }
+*/

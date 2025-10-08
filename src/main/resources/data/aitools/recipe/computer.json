@@ -6,18 +6,10 @@
     "// "
   ],
   "key": {
-    "d": {
-      "tag": "c:gems/diamond"
-    },
-    "I": {
-      "tag": "c:storage_blocks/iron"
-    },
-    "s": {
-      "item": "minecraft:oak_slab"
-    },
-    "/": {
-      "tag": "c:rods/wooden"
-    }
+    "d": "#c:gems/diamond",
+    "I": "#c:storage_blocks/iron",
+    "s": "minecraft:oak_slab",
+    "/": "#c:rods/wooden"
   },
   "result": {
     "id": "aitools:computer",

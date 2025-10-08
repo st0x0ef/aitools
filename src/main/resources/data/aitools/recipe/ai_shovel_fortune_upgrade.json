@@ -1,15 +1,9 @@
 {
   "type": "aitools:computer",
   "ingredients": [
-    {
-      "item": "aitools:ai_shovel"
-    },
-    {
-      "item": "aitools:fortune_gem"
-    },
-    {
-      "tag": "c:gems/diamond"
-    }
+    "aitools:ai_shovel",
+    "aitools:fortune_gem",
+    "#c:gems/diamond"
   ],
   "output": {
     "id": "aitools:ai_shovel",

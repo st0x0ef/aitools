@@ -1,15 +1,9 @@
 {
   "type": "aitools:computer",
   "ingredients": [
-    {
-      "item": "minecraft:diamond_shovel"
-    },
-    {
-      "item": "minecraft:diamond_shovel"
-    },
-    {
-      "tag": "c:gems/diamond"
-    }
+    "minecraft:diamond_shovel",
+    "minecraft:diamond_shovel",
+    "#c:gems/diamond"
   ],
   "output": {
     "id": "aitools:ai_shovel",

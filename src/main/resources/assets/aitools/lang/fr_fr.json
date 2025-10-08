@@ -7,6 +7,7 @@
   "item.aitools.fortune_gem": "Gemme de Fortune",
   "item.aitools.radius_gem": "Gemme de Rayon",
   "item.aitools.efficiency_gem": "Gemme d'Efficacité",
+  "item.aitools.computer": "Ordinateur",
   "block.aitools.computer": "Ordinateur",
   "aitools.configuration.maxRadiusLevel": "Niveau Maximal du Rayon",
   "aitools.configuration.maxFortuneLevel": "Niveau Maximum de Fortune",

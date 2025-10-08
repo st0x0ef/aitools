@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ComputerBlock extends BaseEntityBlock {
     public static final MapCodec<ComputerBlock> CODEC = simpleCodec(ComputerBlock::new);
-    public static final DirectionProperty FACING;
+    public static final EnumProperty<Direction> FACING;
 
     public ComputerBlock(Properties properties) {
         super(properties);
@@ -70,13 +70,16 @@ public class ComputerBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof ComputerBlockEntity computer && player instanceof ServerPlayer serverPlayer) {
                 serverPlayer.openMenu(computer);
             }
+
+            return InteractionResult.SUCCESS_SERVER;
         }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+
+        return InteractionResult.PASS;
     }
 
     @Nullable

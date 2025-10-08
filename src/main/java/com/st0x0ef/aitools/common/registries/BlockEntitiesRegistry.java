@@ -10,5 +10,5 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class BlockEntitiesRegistry {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, AITools.MODID);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ComputerBlockEntity>> COMPUTER = BLOCK_ENTITY_TYPE.register("computer", () -> BlockEntityType.Builder.of(ComputerBlockEntity::new, BlocksRegistry.COMPUTER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ComputerBlockEntity>> COMPUTER = BLOCK_ENTITY_TYPE.register("computer", () -> new BlockEntityType<>(ComputerBlockEntity::new, BlocksRegistry.COMPUTER.get()));
 }

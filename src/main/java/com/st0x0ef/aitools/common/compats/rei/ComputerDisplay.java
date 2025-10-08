@@ -1,4 +1,4 @@
-package com.st0x0ef.aitools.common.compats.rei;
+/*package com.st0x0ef.aitools.common.compats.rei;
 
 import com.st0x0ef.aitools.common.recipes.ComputerRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -33,3 +33,4 @@ public class ComputerDisplay extends BasicDisplay {
         return ComputerCategory.COMPUTER_CATEGORY;
     }
 }
+*/

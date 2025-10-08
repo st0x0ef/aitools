@@ -1,15 +1,9 @@
 {
   "type": "aitools:computer",
   "ingredients": [
-    {
-      "item": "aitools:ai_hoe"
-    },
-    {
-      "item": "aitools:ai_hoe"
-    },
-    {
-      "tag": "c:gems/diamond"
-    }
+    "aitools:ai_hoe",
+    "aitools:ai_hoe",
+    "#c:gems/diamond"
   ],
   "output": {
     "id": "aitools:ai_hoe",

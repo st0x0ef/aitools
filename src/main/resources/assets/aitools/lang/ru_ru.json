@@ -7,6 +7,7 @@
   "item.aitools.fortune_gem": "Драгоценный камень удачи",
   "item.aitools.radius_gem": "Драгоценный камень радиуса",
   "item.aitools.efficiency_gem": "Драгоценный камень эффективности",
+  "item.aitools.computer": "Компьютер",
   "block.aitools.computer": "Компьютер",
   "aitools.configuration.maxRadiusLevel": "Максимальный уровень радиуса",
   "aitools.configuration.maxFortuneLevel": "Максимальный уровень удачи",

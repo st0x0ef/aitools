@@ -7,6 +7,7 @@
   "item.aitools.fortune_gem": "Gema da Fortuna",
   "item.aitools.radius_gem": "Gema do Raio",
   "item.aitools.efficiency_gem": "Gema da Eficiência",
+  "item.aitools.computer": "Computador",
   "block.aitools.computer": "Computador",
   "aitools.configuration.maxRadiusLevel": "Nível Máximo de Raio",
   "aitools.configuration.maxFortuneLevel": "Nível Máximo de Fortuna",

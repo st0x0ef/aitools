@@ -1,15 +1,9 @@
 {
   "type": "aitools:computer",
   "ingredients": [
-    {
-      "item": "minecraft:diamond_axe"
-    },
-    {
-      "item": "minecraft:diamond_axe"
-    },
-    {
-      "tag": "c:gems/diamond"
-    }
+    "minecraft:diamond_axe",
+    "minecraft:diamond_axe",
+    "#c:gems/diamond"
   ],
   "output": {
     "id": "aitools:ai_axe",

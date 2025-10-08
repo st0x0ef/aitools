@@ -1,4 +1,4 @@
-package com.st0x0ef.aitools.common.compats.rei;
+/*package com.st0x0ef.aitools.common.compats.rei;
 
 import com.st0x0ef.aitools.AITools;
 import com.st0x0ef.aitools.common.registries.ItemsRegistry;
@@ -67,3 +67,4 @@ public class ComputerCategory implements DisplayCategory<BasicDisplay> {
         return 65;
     }
 }
+*/
